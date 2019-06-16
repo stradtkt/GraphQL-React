@@ -1,12 +1,21 @@
 import React from 'react';
+import ApolloClient from 'apollo-boost';
+import {ApolloProvider} from 'react-apollo';
+import Launches from './components/Launches';
+
+const client = new ApolloClient({
+    uri: 'http://localhost:5000/graphql'
+});
 
 const App = () => {
   return (
-    <div className="App">
-        <div className="container">
-            <h1>SpaceX</h1>
+    <ApolloProvider client={client}>
+        <div className="App">
+            <div className="container">
+                <Launches/>
+            </div>
         </div>
-    </div>
+    </ApolloProvider>
   );
 }
 
