@@ -35,11 +35,15 @@ export class Launch extends Component {
                             const {mission_name, flight_number, launch_year, launch_success, rocket: {rocket_id, rocket_name, rocket_type}} = data.launch;
                             return <Fragment>
                                 <h1><strong>Mission: </strong> {mission_name}</h1>
-                                <h4>Launch Details</h4>
                                 <ul className="collection">
+                                    <li className="collection-item"><h4>Launch Details</h4></li>
                                     <li className="collection-item">Flight Number: {flight_number}</li>
                                     <li className="collection-item">Launch Year: {launch_year}</li>
-                                    <li className="collection-item">Launch Success: {launch_success}</li>
+                                    <li className="collection-item">Launch Success: {' '}
+                                    <span className={classNames({
+                                        'green-text accent-3': launch_success,
+                                        'deep-orange-text accent-3': !launch_success
+                                    })}>{launch_success ? 'Yes' : 'No'}</span></li>
                                     <li className="collection-item">
                                         <ul className="collection">
                                             <li className="collection-item"><h5>Rocket</h5></li>
@@ -49,6 +53,8 @@ export class Launch extends Component {
                                         </ul>
                                     </li>
                                 </ul>
+                                <hr/>
+                                <Link to="/" className="btn deep-orange accent-3">Back</Link>
                             </Fragment>
                         }
                     }
